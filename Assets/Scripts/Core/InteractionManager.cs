@@ -7,13 +7,13 @@ using UnityEngine;
 /// </summary>
 public class InteractionManager : MonoBehaviour
 {
-    public BoxCollider2D PlayerCollider;
-    public Rigidbody2D PlayerRigidBody;
+    [SerializeField] private BoxCollider2D PlayerCollider;
+    [SerializeField] private  GameObject PlayerObject;
 
     void Start()
     {
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
         PlayerCollider = GetComponent<BoxCollider2D>();
-        PlayerRigidBody = GetComponent<Rigidbody2D>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -24,5 +24,18 @@ public class InteractionManager : MonoBehaviour
         {
             Interactive.OnInteract();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "MovablePlane")
+        {
+            PlayerObject.transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        PlayerObject.transform.SetParent(null);
     }
 }

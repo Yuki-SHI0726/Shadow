@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2294997664277517422}
   - component: {fileID: 8215503491487889733}
   - component: {fileID: 2421624467193292214}
-  - component: {fileID: 129944646976840939}
   m_Layer: 7
   m_Name: InteractionManager
   m_TagString: Untagged
@@ -98,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCollider: {fileID: 0}
-  PlayerRigidBody: {fileID: 0}
+  PlayerObject: {fileID: 0}
 --- !u!61 &2421624467193292214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,27 +124,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98638654, y: 0.44227898}
   m_EdgeRadius: 0
---- !u!50 &129944646976840939
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314031948902288908}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &2109987497368733347
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +226,9 @@ MonoBehaviour:
   m_groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  m_flowerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   m_detectorCount: 10
   m_detectionRayLength: 0.05
   m_rayBuffer: 0.1369
@@ -267,5 +248,3 @@ MonoBehaviour:
   m_HasSpawnShadow: 0
   m_ShadowPosition: {x: 0, y: 0, z: 0}
   Shadow: {fileID: 0}
-  m_FlowerTag: Flower
-  m_TouchFloser: 0

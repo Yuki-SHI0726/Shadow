@@ -126,7 +126,7 @@ namespace Controller
 
             m_colDown = groundedCheck;
 
-            // The rest
+            // 剩下的信息
             m_colUp = RunDetection(m_raysUp);
             m_colLeft = RunDetection(m_raysLeft);
             m_colRight = RunDetection(m_raysRight);
