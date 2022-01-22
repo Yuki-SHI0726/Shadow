@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2354576e2ad66d44f9dea98dce9cfeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShadowPosition: {x: 0, y: 0, z: 0}
+  m_shadowPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &6027788204663618357
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3206630085423641367}
   - component: {fileID: 6054652064531866207}
-  - component: {fileID: 7260979902842626116}
   - component: {fileID: 3549217770465150380}
+  - component: {fileID: 1168572051448394330}
   m_Layer: 8
   m_Name: InteractionManager
   m_TagString: Untagged
@@ -181,20 +181,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7260979902842626116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6027788204663618357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa598d1736c50eb44aaa48f9548504f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerObject: {fileID: 0}
-  PlayerController: {fileID: 0}
 --- !u!61 &3549217770465150380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,7 +194,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013035774, y: -0.40424132}
+  m_Offset: {x: -0.0038253665, y: -0.41688722}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,5 +205,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.257328, y: 0.684988}
+  m_Size: {x: 0.9032434, y: 0.55852926}
   m_EdgeRadius: 0
+--- !u!114 &1168572051448394330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6027788204663618357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d1f94f127ce9847b0839aee1403ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShadowObject: {fileID: 5663626351282951635}
+  ShadowController: {fileID: 1911296613263679060}
+  PlayerObject: {fileID: 0}
+  PlayerController: {fileID: 0}
