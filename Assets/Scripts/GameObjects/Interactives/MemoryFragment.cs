@@ -24,7 +24,7 @@ public class MemoryFragment : Interactive
         m_id = int.Parse(idString);
     }
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
         // Get the corresponding image in UI
         string ImageName = "MemoryFragment_Image_" + m_id.ToString();

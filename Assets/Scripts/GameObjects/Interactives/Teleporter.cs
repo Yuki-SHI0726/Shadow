@@ -8,22 +8,29 @@ using UnityEngine;
 public class Teleporter : Interactive
 {
     [SerializeField] private Vector3 m_destination = Vector3.zero;
+    private bool m_canTeleport = false;
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
+        m_interactedObject = interactedObject;
         GetComponentInChildren<MeshRenderer>().enabled = true;
+        m_canTeleport = true;
     }
 
-    public override void OnStayInteract()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (m_canTeleport && Input.GetKeyDown(KeyCode.E))
         {
-            
+            Debug.Assert(m_interactedObject != null);
+            m_interactedObject.transform.position = m_destination;
+            OnExitInteract(m_interactedObject);
         }
     }
 
-    public override void OnExitInteract()
+    public override void OnExitInteract(GameObject interactedObject)
     {
+        m_interactedObject = interactedObject;
         GetComponentInChildren<MeshRenderer>().enabled = false;
+        m_canTeleport = false;
     }
 }

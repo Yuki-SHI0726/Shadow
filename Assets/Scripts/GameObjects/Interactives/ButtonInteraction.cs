@@ -18,12 +18,12 @@ public class ButtonInteraction : Interactive
         m_boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
         OnButtonPressed.Invoke();
     }
 
-    public override void OnExitInteract()
+    public override void OnExitInteract(GameObject interactedObject)
     {
         //要检测这个按钮上还没有没有InteractionManagerLayer的碰撞
         Collider2D HitInfo = Physics2D.OverlapBox(transform.position, m_boxCollider.size, 0, m_interactionLayer);

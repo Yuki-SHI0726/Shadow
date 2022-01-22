@@ -13,7 +13,7 @@ public class Star : Interactive
         Type = InteractiveType.kStar;
     }
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
         // Find the CollectedStarCountText
         Text collectedStarCountText = GameObject.Find("CollectedStarCountText").GetComponent<Text>();

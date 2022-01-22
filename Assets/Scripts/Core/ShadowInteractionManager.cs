@@ -21,7 +21,7 @@ public class ShadowInteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnInteract();
+            Interactive.OnInteract(ShadowObject);
         }
     }
 
@@ -50,7 +50,7 @@ public class ShadowInteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnExitInteract();
+            Interactive.OnExitInteract(ShadowObject);
         }
 
         if (collision.tag == PlayerController.MovableTag)

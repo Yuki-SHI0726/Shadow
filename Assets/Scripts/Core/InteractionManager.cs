@@ -22,7 +22,7 @@ public class InteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnInteract();
+            Interactive.OnInteract(PlayerObject);
         }
     }
 
@@ -41,8 +41,8 @@ public class InteractionManager : MonoBehaviour
         Interactive interactive = collision.gameObject.GetComponent<Interactive>();
         if (interactive != null)
         {
-            interactive.OnStayInteract();
-        }    
+            interactive.OnStayInteract(PlayerObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -51,7 +51,7 @@ public class InteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnExitInteract();
+            Interactive.OnExitInteract(PlayerObject);
         }
 
         if (collision.tag == PlayerController.MovableTag)
