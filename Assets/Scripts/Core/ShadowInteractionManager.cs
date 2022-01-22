@@ -33,7 +33,7 @@ public class ShadowInteractionManager : MonoBehaviour
             MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();
             if (Plane != null)
             {
-                Debug.Log("影子也要走");
+                ShadowController.ExtensionVelocity = Plane.GetVelocity();
             }
         }
     }
@@ -50,7 +50,7 @@ public class ShadowInteractionManager : MonoBehaviour
         if (collision.tag == PlayerController.MovableTag)
         {
             // Stop following the movale plane
-            Debug.Log("影子的速度是0");
+            ShadowController.ExtensionVelocity = Vector3.zero;
         }
     }
 

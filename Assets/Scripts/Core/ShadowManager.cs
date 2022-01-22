@@ -51,6 +51,7 @@ public class ShadowManager : MonoBehaviour
     [SerializeField] public GameObject SpawnedShadow;
 
     public UnityEvent OnFlushBack;
+
     public void DetectFlashBack(FrameInput input)
     {     
         if (input.Shadow)
