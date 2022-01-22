@@ -145,7 +145,7 @@ public class Controller : MonoBehaviour, IPlayerController
     {
         CalculateRayRanged();
 
-        bool groundedCheck = RunDetection(m_raysDown) || RunInteractivesDection(m_raysDown);
+        bool groundedCheck = RunDetection(m_raysDown);
 
         if (m_colDown && !groundedCheck)
         {
@@ -365,7 +365,8 @@ public class Controller : MonoBehaviour, IPlayerController
             float t = (float)i / m_freeColliderIterations;
             Vector2 posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-            if (Physics2D.OverlapBox(posToTry, m_characterBounds.size, 0.0f, m_groundLayer))
+            var hitInfo = Physics2D.OverlapBox(posToTry, m_characterBounds.size, 0.0f, m_groundLayer);
+            if (hitInfo)
             {
                 transform.position = positionToMoveTo;
 
@@ -375,6 +376,14 @@ public class Controller : MonoBehaviour, IPlayerController
                     {
                         Vector3 dir = Vector3.up;
                         transform.position += dir.normalized * move.magnitude;
+                        var Movetable = hitInfo.gameObject.GetComponent<MovablePlane>();
+                        if(Movetable)
+                        {
+                            Vector3 AttendVelocity = Movetable.GetVelocity();
+                            Vector3 AttendMotion = AttendVelocity * Time.deltaTime;
+                            transform.position += AttendMotion;
+                        }
+
                     }
                     else if (m_colLeft)
                     {
