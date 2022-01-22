@@ -284,7 +284,7 @@ Transform:
   - {fileID: 483509063}
   - {fileID: 645830407}
   m_Father: {fileID: 658438012}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &175125818
 GameObject:
@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349164916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.43, y: 3.45, z: 0.2714081}
+  m_LocalPosition: {x: 4.43, y: 2.68, z: 0.2714081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 175125819}
@@ -651,8 +651,8 @@ Transform:
   - {fileID: 1952864264}
   - {fileID: 1531394678}
   - {fileID: 2035903683}
-  - {fileID: 1053173246}
   - {fileID: 107702851}
+  - {fileID: 1053173246}
   - {fileID: 710805644}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1890,7 +1890,7 @@ Transform:
   m_LocalScale: {x: 17.8424, y: 2.4546, z: 1}
   m_Children: []
   m_Father: {fileID: 658438012}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1053173247
 Rigidbody2D:
@@ -2694,12 +2694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6864c7237dce33643a7d851cf4b2a3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shift: {x: -10, y: 0, z: 0}
-  Velocity: {x: 0, y: 0, z: 0}
-  Duration: 5
-  MoveloopType: 1
-  Loops: -1
-  DelayTime: 1
+  m_shift: {x: -10, y: 0, z: 0}
+  m_velocity: {x: 0, y: 0, z: 0}
+  m_duration: 5
+  m_moveloopType: 1
+  m_loops: -1
+  m_delayTime: 1
 --- !u!50 &1531394680
 Rigidbody2D:
   serializedVersion: 4
@@ -3099,12 +3099,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6864c7237dce33643a7d851cf4b2a3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shift: {x: 0, y: 10, z: 0}
-  Velocity: {x: 0, y: 0, z: 0}
-  Duration: 5
-  MoveloopType: 1
-  Loops: -1
-  DelayTime: 5
+  m_shift: {x: 0, y: 10, z: 0}
+  m_velocity: {x: 0, y: 0, z: 0}
+  m_duration: 5
+  m_moveloopType: 1
+  m_loops: -1
+  m_delayTime: 5
 --- !u!50 &2035903685
 Rigidbody2D:
   serializedVersion: 4

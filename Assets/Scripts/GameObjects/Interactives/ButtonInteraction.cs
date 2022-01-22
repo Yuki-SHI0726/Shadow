@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ButtonInteraction : Interactive
 {
-    [SerializeField] private bool Pressed = false;
-    [SerializeField] private Object  Door = null;
+    [SerializeField] private bool m_pressed = false;
+    [SerializeField] private Object m_door = null;
+
     private void Start()
     {
         Type = InteractiveType.kButton;
@@ -13,11 +14,11 @@ public class ButtonInteraction : Interactive
 
     public override void OnInteract()
     {
-        Pressed = true;
+        m_pressed = true;
     }
 
     public override void OnExitInteract()
-    { 
-        Pressed = false;
+    {
+        m_pressed = false;
     }
 }

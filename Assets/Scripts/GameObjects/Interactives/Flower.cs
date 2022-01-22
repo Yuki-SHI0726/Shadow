@@ -14,9 +14,4 @@ public class Flower : Interactive
     {
         Debug.Log("花");
     }
-
-    public override void OnExitInteract()
-    {
-       
-    }
 }

@@ -8,12 +8,12 @@ using UnityEngine;
 public class InteractionManager : MonoBehaviour
 {
     [SerializeField] private  GameObject PlayerObject;
-    [SerializeField] private Controller.Controller PlayerController;
+    [SerializeField] private Controller PlayerController;
 
     void Start()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        PlayerController = PlayerObject.GetComponent<Controller.Controller>();
+        PlayerController = PlayerObject.GetComponent<Controller>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +28,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Follow the movale plane
+        // Follow the movale plane
         if (collision.tag == PlayerController.MovableTag)
         {
             MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();

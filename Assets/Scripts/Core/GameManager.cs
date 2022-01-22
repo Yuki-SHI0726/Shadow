@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-
     public const int TotalStarsCount = 8;
-    [HideInInspector] static public int CollectedStarCount = 0;
     public const int TotalMemoryFragmentsCount = 4;
+    [HideInInspector] static public int CollectedStarCount = 0;
 }

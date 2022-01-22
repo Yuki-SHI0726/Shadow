@@ -30,8 +30,4 @@ public class Star : Interactive
         // Destroy the collectable object in the scene
         Destroy(gameObject);
     }
-
-    public override void OnExitInteract()
-    {
-    }
 }

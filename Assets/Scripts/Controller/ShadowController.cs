@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShadowController : MonoBehaviour
 {
-    [SerializeField] public Vector3 m_ShadowPosition = Vector3.zero;
+    [SerializeField] private Vector3 m_shadowPosition = Vector3.zero;
 
     void Start()
     {
