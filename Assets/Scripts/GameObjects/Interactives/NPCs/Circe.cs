@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Guide for Hardy
+/// Guider for Hardy
 /// </summary>
 public class Circe : NPC
 {

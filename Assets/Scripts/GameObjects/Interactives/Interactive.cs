@@ -9,6 +9,6 @@ public class Interactive: MonoBehaviour
     public string Name { get; protected set; }
 
     public virtual void OnInteract() { }
-
     public virtual void OnExitInteract() { }
+    public virtual void OnStayInteract() { }
 }

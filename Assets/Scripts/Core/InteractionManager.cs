@@ -37,6 +37,12 @@ public class InteractionManager : MonoBehaviour
                 PlayerController.ExtensionVelocity = Plane.GetVelocity();
             }
         }
+
+        Interactive interactive = collision.gameObject.GetComponent<Interactive>();
+        if (interactive != null)
+        {
+            interactive.OnStayInteract();
+        }    
     }
 
     private void OnTriggerExit2D(Collider2D collision)
