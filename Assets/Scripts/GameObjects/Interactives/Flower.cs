@@ -10,7 +10,7 @@ public class Flower : Interactive
         Type = InteractiveType.kFlower;
     }
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
         Debug.Log("花");
     }
