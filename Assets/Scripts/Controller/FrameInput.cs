@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Input variable for each frame
 /// </summary>
-public class FrameInput : MonoBehaviour
+public class FrameInput
 {
     public float X, Y;
     public bool JumpDown;

@@ -11,6 +11,10 @@ public class Controller : MonoBehaviour, IPlayerController
     public bool landingThisFrame { get; private set; }
     public Vector3 RawMovement { get; private set; }
     public bool Grounded => m_colDown;
+
+    [SerializeField] private PlayerManager m_playerManager;
+
+    [SerializeField] private ShadowManager m_shadowManager;
     #endregion
 
     #region ControllerVariables
@@ -39,6 +43,7 @@ public class Controller : MonoBehaviour, IPlayerController
     private bool m_colDown  = false;
     private bool m_colLeft  = false;
     private float m_timeLeftGrounded = 0.0f;
+    private Bounds m_OriginalcharacterBounds;
     #endregion
 
     #region WalkVariables
@@ -93,18 +98,12 @@ public class Controller : MonoBehaviour, IPlayerController
     [SerializeField] public Vector3 ExtensionVelocity = Vector3.zero;
     #endregion
 
-    #region FlashBackVariables
-    [Header("FlashBack")]
-    [SerializeField] public bool m_hasSpawnShadow = false;
-    [SerializeField] public Vector3 m_shadowPosition;
-    [SerializeField] public GameObject Shadow;
-    [SerializeField] public GameObject SpawnedShadow;
-    #endregion
-
     void Awake()
     {
         FrameInputImpl = new FrameInput();
         Invoke(nameof(Activate), m_delayInvokeTime);
+        m_playerManager = GetComponent<PlayerManager>();
+        m_OriginalcharacterBounds = m_characterBounds;
     }
 
     private void Update()
@@ -116,9 +115,10 @@ public class Controller : MonoBehaviour, IPlayerController
 
         m_lastJumpPressed = FrameInputImpl.GatherInput();
 
-        DetectFlashBack();
-
         RunCollisionChecks();
+
+        //ShadowManager
+        m_shadowManager.DetectFlashBack(FrameInputImpl);
 
         // Calculation for movement
         CalculateWalk();
@@ -168,6 +168,11 @@ public class Controller : MonoBehaviour, IPlayerController
         }
     }
 
+    public void CalculateCharacterBounds()
+    {
+        m_characterBounds = m_OriginalcharacterBounds;
+        m_characterBounds.size *= m_playerManager.GetShadowScale();
+    }
     private void CalculateRayRanged()
     {
         // Build a bounds centered by player
@@ -377,47 +382,4 @@ public class Controller : MonoBehaviour, IPlayerController
     }
     #endregion
 
-    #region FlashBackFunctions
-    void DetectFlashBack()
-    {
-        if (FrameInputImpl.Shadow)
-        {
-            if (m_hasSpawnShadow)
-            {
-                m_hasSpawnShadow = false;
-                FlashBack(m_shadowPosition);
-                Destroy(SpawnedShadow);
-            }
-            else
-            {
-                // Only allows spawning shadows on the ground
-                if (Grounded)
-                {
-                    m_hasSpawnShadow = true;
-                    m_shadowPosition = transform.position;
-                    SpawnShadow(m_shadowPosition);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    /// Teleport back to the shadow position
-    /// </summary>
-    /// <param name="shadowPosition">The shadow position to teleport</param>
-    void FlashBack(Vector3 shadowPosition)
-    {
-        transform.position = shadowPosition;
-    }
-
-    /// <summary>
-    /// Spawn the prefab at position
-    /// </summary>
-    /// <param name="shadowPosition">Position to spawn a shadow</param>
-    void SpawnShadow(Vector3 shadowPosition)
-    {
-        SpawnedShadow = Instantiate(Shadow);
-        SpawnedShadow.transform.position = shadowPosition;
-    }
-    #endregion
 }

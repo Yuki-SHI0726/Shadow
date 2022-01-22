@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class ButtonInteraction : Interactive
 {
-    [SerializeField] private bool Pressed = false;
     [SerializeField] public UnityEvent OnButtonPressed;
     [SerializeField] public UnityEvent OnButtonRealese;
 
@@ -17,13 +16,11 @@ public class ButtonInteraction : Interactive
 
     public override void OnInteract()
     {
-        Pressed = true;
         OnButtonPressed.Invoke();
     }
 
     public override void OnExitInteract()
     {
-        Pressed = false;
         OnButtonRealese.Invoke();
     }
 }

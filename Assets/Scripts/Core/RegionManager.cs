@@ -5,8 +5,8 @@ using UnityEngine;
 public class RegionManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_playerObject = null;
-    [SerializeField] private string m_regionTag = "";
     [SerializeField] private PlayerManager m_playeManager = null;
+    [SerializeField] private string m_regionTag = "";
 
     void Start()
     {
