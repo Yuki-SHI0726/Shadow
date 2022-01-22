@@ -26,8 +26,8 @@ public class ButtonInteraction : Interactive
     public override void OnExitInteract()
     {
         //要检测这个按钮上还没有没有InteractionManagerLayer的碰撞
-        Collider2D HitInfo =  Physics2D.OverlapBox(transform.position, m_boxCollider.size, 0, m_interactionLayer);
-        if(HitInfo == null)
+        Collider2D HitInfo = Physics2D.OverlapBox(transform.position, m_boxCollider.size, 0, m_interactionLayer);
+        if (HitInfo == null)
         {
             OnButtonRealese.Invoke();
         }

@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Controller for Hardy
+/// </summary>
 public class Controller : MonoBehaviour, IPlayerController
 {
     #region Properties
