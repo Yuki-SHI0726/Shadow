@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Region : MonoBehaviour
 {
-    public bool region = true;
+    [SerializeField] private bool m_isRegion = true;
+
+    public bool IsRegion() { return m_isRegion; }
 }

@@ -6,8 +6,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    //True if Player in white Region
-    [SerializeField] public bool Region = true;
+    private bool m_inWhiteRegion = true;       // Yes
 
     private static PlayerManager m_instance = null;
 
@@ -17,4 +16,7 @@ public class PlayerManager : MonoBehaviour
     {
         m_instance = this;
     }
+
+    public bool IsInWhiteRegion() { return m_inWhiteRegion; }
+    public void SetPlayerInWhiteRegion(bool IsInWhiteRegion) { m_inWhiteRegion = IsInWhiteRegion; }
 }

@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class RegionManager : MonoBehaviour
 {
-    [SerializeField] private GameObject PlayerObject;
-    [SerializeField] string RegionTag;
-    [SerializeField] private PlayerManager m_PlayeManager;
-    // Update is called once per frame
+    [SerializeField] private GameObject m_playerObject = null;
+    [SerializeField] private string m_regionTag = "";
+    [SerializeField] private PlayerManager m_playeManager = null;
+
     void Start()
     {
-        PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        m_PlayeManager = PlayerObject.GetComponent<PlayerManager>();
+        m_playerObject = GameObject.FindGameObjectWithTag("Player");
+        m_playeManager = m_playerObject.GetComponent<PlayerManager>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == RegionTag)
+        if(collision.tag == m_regionTag)
         {
-            Region region = collision.transform.GetComponent<Region>();
-            if(region != null)
+            Region region = collision.GetComponent<Region>(); 
+            if (region != null) 
             {
-                SetRegion(region.region);
+                SetRegion(region.IsRegion());
             }
         }
     }
@@ -33,6 +33,6 @@ public class RegionManager : MonoBehaviour
 
     void SetRegion(bool Region)
     {
-        m_PlayeManager.Region = Region;
+        m_playeManager.SetPlayerInWhiteRegion(Region);
     }
 }

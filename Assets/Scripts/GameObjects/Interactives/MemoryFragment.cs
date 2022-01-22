@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class MemoryFragment : Interactive
 {
-    private int m_id = 0;
+    private int m_id = 0;   // The unique Id for this memory fragment. Used for searching the corresponding UI image
 
     private void OnEnable()
     {

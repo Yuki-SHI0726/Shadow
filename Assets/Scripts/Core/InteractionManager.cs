@@ -34,7 +34,7 @@ public class InteractionManager : MonoBehaviour
             MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();
             if (Plane != null)
             {
-                PlayerController.ExtensionVelocity = Plane.Velocity;
+                PlayerController.ExtensionVelocity = Plane.GetVelocity();
             }
         }
     }
@@ -43,7 +43,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (collision.tag == PlayerController.MovableTag)
         {
-            //Stop follow the movale plane
+            // Stop following the movale plane
             PlayerController.ExtensionVelocity = Vector3.zero;          
         }
     }
