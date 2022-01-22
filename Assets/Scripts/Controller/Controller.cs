@@ -374,6 +374,7 @@ namespace Controller
         [SerializeField] public bool m_HasSpawnShadow = false;
         [SerializeField] public Vector3 m_ShadowPosition;
         [SerializeField] public GameObject Shadow;
+        [SerializeField] public GameObject SpawnedShadow;
         void DetectFlashBack()
         {
             if(Input.Shadow)
@@ -382,6 +383,7 @@ namespace Controller
                 {
                     m_HasSpawnShadow = false;
                     FlashBack(m_ShadowPosition);
+                    Destroy(SpawnedShadow);                 
                 }
                 else
                 {
@@ -390,7 +392,7 @@ namespace Controller
                     {
                         m_HasSpawnShadow = true;
                         m_ShadowPosition = transform.position;
-                        SpawnShadow(m_ShadowPosition);
+                        SpawnShadow(m_ShadowPosition);               
                     }
                 }
             }
@@ -404,8 +406,8 @@ namespace Controller
         void SpawnShadow(Vector3 shadowPosition)
         {
             //直接在规定的位置创建预制体
-            //var shadow = GameObject.Instantiate(Shadow);
-            //shadow.transform.position = shadowPosition;
+            SpawnedShadow = GameObject.Instantiate(Shadow);
+            SpawnedShadow.transform.position = shadowPosition;
         }
 
         #endregion
