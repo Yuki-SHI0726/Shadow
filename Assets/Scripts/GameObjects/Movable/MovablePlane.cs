@@ -18,6 +18,8 @@ public class MovablePlane : MonoBehaviour
 
     private Vector3 m_lastPosition = Vector3.zero;
 
+    public Vector3 GetVelocity() { return m_velocity; }
+
     void Start()
     {
         transform.DOMove(transform.position + m_shift, m_duration)
@@ -32,6 +34,4 @@ public class MovablePlane : MonoBehaviour
         m_velocity = (transform.position - m_lastPosition) / Time.deltaTime;
         m_lastPosition = transform.position;
     }
-
-    public Vector3 GetVelocity() { return m_velocity; }
 }

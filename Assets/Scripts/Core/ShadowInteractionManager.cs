@@ -35,6 +35,12 @@ public class ShadowInteractionManager : MonoBehaviour
             {
                 ShadowController.ExtensionVelocity = Plane.GetVelocity();
             }
+
+            MoveByButton Plane2 = collision.gameObject.GetComponent<MoveByButton>();
+            if(Plane2 != null)
+            {
+                ShadowController.ExtensionVelocity = Plane2.GetVelocity();
+            }
         }
     }
 
