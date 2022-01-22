@@ -96,7 +96,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2354576e2ad66d44f9dea98dce9cfeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shadowPosition: {x: 0, y: 0, z: 0}
+  m_playerManager: {fileID: 6129895662017692084, guid: 259d077b6c6f89743b6668756985279e, type: 3}
+  PlayerObject: {fileID: 0}
+  PlayerController: {fileID: 0}
+  m_delayInvokeTime: 0.5
+  m_characterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
+  m_groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  m_interactiveLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  MovableTag: Movable
+  m_detectorCount: 3
+  m_detectionRayLength: 0.1
+  m_rayBuffer: 0.1
+  m_fallClamp: -40
+  m_minFallSpeed: 80
+  m_maxFallSpeed: 120
+  m_freeColliderIterations: 100
+  ExtensionVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &6027788204663618357
 GameObject:
   m_ObjectHideFlags: 0

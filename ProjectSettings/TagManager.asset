@@ -8,6 +8,7 @@ TagManager:
   - MovablePlane
   - Region
   - Shadow
+  - ShadowManager
   layers:
   - Default
   - TransparentFX
