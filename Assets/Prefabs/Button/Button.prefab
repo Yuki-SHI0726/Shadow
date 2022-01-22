@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5498367840876164862}
   - component: {fileID: 5498367840876164863}
   - component: {fileID: 5498367840876164851}
+  - component: {fileID: 8674539496735429260}
   m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
@@ -147,7 +148,7 @@ MonoBehaviour:
   OnButtonPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8674539496735429260}
         m_TargetAssemblyTypeName: MoveByButton, Assembly-CSharp
         m_MethodName: OnButtonPressed
         m_Mode: 1
@@ -162,7 +163,7 @@ MonoBehaviour:
   OnButtonRealese:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8674539496735429260}
         m_TargetAssemblyTypeName: MoveByButton, Assembly-CSharp
         m_MethodName: OnButtonReleased
         m_Mode: 1
@@ -177,3 +178,17 @@ MonoBehaviour:
   m_interactionLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &8674539496735429260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498367840876164856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854b0c679799a2e47a8a576d97247fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shift: {x: 0, y: -1, z: 0}
+  Duration: 1

@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private bool m_inWhiteRegion = true;
     [SerializeField] private float m_shadowScale = 1.0f;
+    [SerializeField] private Bounds m_bounds;
+    [SerializeField] private Bounds m_OriginalcharacterBounds;
 
     private static PlayerManager m_instance = null;
 
@@ -24,4 +26,11 @@ public class PlayerManager : MonoBehaviour
 
     public float GetShadowScale() { return m_shadowScale; }
     public void SetShadowScale(float inScale) { m_shadowScale = inScale; }
+
+    public Bounds GetBounds() { return m_bounds; }
+    public void SetBounds(Bounds InBounds) { m_bounds = InBounds; }
+
+    public Bounds GetOriginalcharacterBounds() { return m_OriginalcharacterBounds; }
+
+    public void SetOriginalcharacterBounds(Bounds InBounds) { m_OriginalcharacterBounds = InBounds; }
 }
