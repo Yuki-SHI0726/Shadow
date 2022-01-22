@@ -97,8 +97,22 @@ public class ShadowManager : MonoBehaviour
     {
         //直接在规定的位置创建预制体
         SpawnedShadow = GameObject.Instantiate(Shadow);
-        SpawnedShadow.transform.position = shadowPosition;
+        SpawnedShadow.transform.position = CalculateShadowPosition(shadowPosition);
         SpawnedShadow.transform.localScale *= m_playerManager.GetShadowScale();
+    }
+
+    Vector3 CalculateShadowPosition(Vector3 shadowPosition)
+    {
+        Vector3 Result = shadowPosition;
+
+        if(!Mathf.Approximately(m_playerManager.GetShadowScale(),1.0f))
+        {
+            float Height = shadowPosition.y - m_playerManager.GetBounds().size.y / 2;
+            Height += m_playerManager.GetShadowScale() * m_playerManager.GetOriginalcharacterBounds().size.y / 2;
+            Result.y = Height;
+        }
+
+        return Result;
     }
     #endregion
 }

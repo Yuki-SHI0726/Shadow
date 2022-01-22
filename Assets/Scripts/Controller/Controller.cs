@@ -107,6 +107,7 @@ public class Controller : MonoBehaviour, IPlayerController
         Invoke(nameof(Activate), m_delayInvokeTime);
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
+        m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
     }
 
     private void Update()
@@ -180,6 +181,8 @@ public class Controller : MonoBehaviour, IPlayerController
     {
         // Build a bounds centered by player
         Bounds b = new Bounds(transform.position, m_characterBounds.size);
+
+        m_playerManager.SetBounds(b);
 
         m_raysDown  = new RayRange(b.min.x + m_rayBuffer, b.min.y, b.max.x - m_rayBuffer, b.min.y, Vector2.down);
         m_raysUp    = new RayRange(b.min.x + m_rayBuffer, b.max.y, b.max.x - m_rayBuffer, b.max.y, Vector2.up);
