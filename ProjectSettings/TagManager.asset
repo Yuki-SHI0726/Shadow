@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Flower
   - MovablePlane
+  - Region
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Flower
   - Ground
   - InteractionManager
-  - 
-  - 
+  - Region
+  - RegionManager
   - 
   - 
   - 
