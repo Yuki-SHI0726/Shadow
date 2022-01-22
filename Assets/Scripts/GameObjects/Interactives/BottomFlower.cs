@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Flower : Interactive
-{   
+public class BottomFlower : Interactive
+{
+    public UnityEvent OnCollision;
     private void Start()
     {
         Type = InteractiveType.kFlower;
@@ -12,5 +13,10 @@ public class Flower : Interactive
 
     public override void OnInteract()
     {
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnCollision.Invoke();
     }
 }

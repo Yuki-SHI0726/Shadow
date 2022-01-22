@@ -16,7 +16,6 @@ public class MoveByButton : MonoBehaviour
     private void Start()
     {
         m_lastPosition = transform.position;
-
         //初始化一个Tween动画
         m_tweenAnimation = transform.DOMove(transform.position + Shift, Duration);
         m_tweenAnimation.Pause();

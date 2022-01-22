@@ -79,7 +79,16 @@ public class ShadowManager : MonoBehaviour
                     //在花的范围内才能改变影子大小
                     if(m_isClosetoFlower)
                     {
-                        m_playerManager.SetShadowScale(m_distance);
+                        if (m_distance < 1.2f)
+                            m_playerManager.SetShadowScale(0.5f);
+                        else if(m_distance >=1.2f && m_distance <= 1.7f)
+                        {
+                            m_playerManager.SetShadowScale(1.0f);
+                        }
+                        else
+                        {
+                            m_playerManager.SetShadowScale(2.0f);
+                        }
                     }
                     SpawnShadow(m_ShadowPosition);
                 }
