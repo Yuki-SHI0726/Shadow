@@ -41,6 +41,13 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Interactive Interactive = collision.gameObject.GetComponent<Interactive>();
+
+        if (Interactive != null)
+        {
+            Interactive.OnExitInteract();
+        }
+
         if (collision.tag == PlayerController.MovableTag)
         {
             //Stop follow the movale plane

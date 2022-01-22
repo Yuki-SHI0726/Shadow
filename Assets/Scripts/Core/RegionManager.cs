@@ -26,11 +26,6 @@ public class RegionManager : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
-
     void SetRegion(bool Region)
     {
         m_PlayeManager.Region = Region;

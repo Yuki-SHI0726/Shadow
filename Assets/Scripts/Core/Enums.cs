@@ -9,5 +9,6 @@ public enum InteractiveType
     kMechanism,
     kFlower,
     kStar,
-    kMemoryFragment
+    kMemoryFragment,
+    kButton
 }

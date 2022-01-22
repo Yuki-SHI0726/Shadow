@@ -37,4 +37,8 @@ public class MemoryFragment : Interactive
         // Destroy the collectable object in the scene
         Destroy(gameObject);
     }
+
+    public override void OnExitInteract()
+    {
+    }
 }
