@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour, IPlayerController
 {
     #region Properties
-    public Vector3 Velocity { get; private set; }
+    public Vector3 Velocity { get; set; }
     public FrameInput FrameInputImpl { get; private set; }
     public bool JumpingThisFrame { get; private set; }
     public bool landingThisFrame { get; private set; }
@@ -365,13 +365,31 @@ public class Controller : MonoBehaviour, IPlayerController
 
                 if (i == 1)
                 {
-                    if (m_currentVerticalSpeed < 0.0f)
+                    if (m_colDown)
                     {
-                        m_currentVerticalSpeed = 0.0f;
+                        Vector3 dir = Vector3.up;
+                        transform.position += dir.normalized * move.magnitude;
                     }
-
-                    Vector3 dir = transform.position - hit.transform.position;
-                    transform.position += dir.normalized * move.magnitude;
+                    else if (m_colLeft)
+                    {
+                        Vector3 dir = Vector3.right;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else if (m_colRight)
+                    {
+                        Vector3 dir = Vector3.left;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else if (m_colUp)
+                    {
+                        Vector3 dir = Vector3.down;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else
+                    {
+                        Vector3 dir = transform.position - hit.transform.position;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
                 }
 
                 return;

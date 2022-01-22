@@ -195,13 +195,31 @@ public class ShadowController : MonoBehaviour
 
                 if (i == 1)
                 {
-                    if (m_currentVerticalSpeed < 0.0f)
+                    if(m_colDown)
                     {
-                        m_currentVerticalSpeed = 0.0f;
+                        Vector3 dir = Vector3.up;
+                        transform.position += dir.normalized * move.magnitude;
                     }
-
-                    Vector3 dir = transform.position - hit.transform.position;
-                    transform.position += dir.normalized * move.magnitude;
+                    else if(m_colLeft)
+                    {
+                        Vector3 dir = Vector3.right;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else if(m_colRight)
+                    {
+                        Vector3 dir = Vector3.left;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else if(m_colUp)
+                    {
+                        Vector3 dir = Vector3.down;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
+                    else
+                    {
+                        Vector3 dir = transform.position - hit.transform.position;
+                        transform.position += dir.normalized * move.magnitude;
+                    }
                 }
 
                 return;
