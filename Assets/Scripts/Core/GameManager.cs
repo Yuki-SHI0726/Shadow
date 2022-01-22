@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    public const int TotalStarsCount = 8;
-    public const int TotalMemoryFragmentsCount = 4;
+    // Collecting
     [HideInInspector] static public int CollectedStarCount = 0;
+
+    // NPC
+    public const float kCloseDistanceToInteract = 2.0f;
 }

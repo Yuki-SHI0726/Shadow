@@ -29,7 +29,7 @@ public class ShadowManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == m_flowerTag)
+        if (collision.tag == m_flowerTag)
         {
             Vector3 PlayerToFlower = collision.transform.position - m_playerObject.transform.position;
             m_distance = PlayerToFlower.magnitude;

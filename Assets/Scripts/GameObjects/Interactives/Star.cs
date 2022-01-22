@@ -23,9 +23,7 @@ public class Star : Interactive
         ++GameManager.CollectedStarCount;
 
         // Update UI text
-        int colonIndex = collectedStarCountText.text.IndexOf(':');
-        collectedStarCountText.text = collectedStarCountText.text.Remove(colonIndex + 2);
-        collectedStarCountText.text += GameManager.CollectedStarCount;
+        collectedStarCountText.text = GameManager.CollectedStarCount.ToString();
 
         // Destroy the collectable object in the scene
         Destroy(gameObject);

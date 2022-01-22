@@ -22,7 +22,6 @@ public class MemoryFragment : Interactive
         // Parse Id from name
         string idString = name.Substring(name.LastIndexOf('_') + 1);
         m_id = int.Parse(idString);
-        Debug.Assert(m_id < GameManager.TotalMemoryFragmentsCount);
     }
 
     public override void OnInteract()
