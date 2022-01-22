@@ -7,14 +7,12 @@ using UnityEngine;
 /// </summary>
 public class InteractionManager : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D PlayerCollider;
     [SerializeField] private  GameObject PlayerObject;
     [SerializeField] private Controller.Controller PlayerController;
 
     void Start()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        PlayerCollider = GetComponent<BoxCollider2D>();
         PlayerController = PlayerObject.GetComponent<Controller.Controller>();
     }
 
@@ -30,7 +28,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //跟随平台一起滑动
+        //Follow the movale plane
         if (collision.tag == PlayerController.MovableTag)
         {
             MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();
@@ -45,7 +43,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (collision.tag == PlayerController.MovableTag)
         {
-            //跳出平台后不再滑动
+            //Stop follow the movale plane
             PlayerController.ExtensionVelocity = Vector3.zero;          
         }
     }
