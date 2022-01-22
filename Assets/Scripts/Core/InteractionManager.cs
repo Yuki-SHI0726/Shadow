@@ -9,11 +9,13 @@ public class InteractionManager : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D PlayerCollider;
     [SerializeField] private  GameObject PlayerObject;
+    [SerializeField] private Controller.Controller PlayerController;
 
     void Start()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         PlayerCollider = GetComponent<BoxCollider2D>();
+        PlayerController = PlayerObject.GetComponent<Controller.Controller>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -26,16 +28,25 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.transform.tag == "MovablePlane")
+        //跟随平台一起滑动
+        if (collision.tag == PlayerController.MovableTag)
         {
-            PlayerObject.transform.SetParent(collision.transform);
+            MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();
+            if (Plane != null)
+            {
+                PlayerController.ExtensionVelocity = Plane.Velocity;
+            }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerObject.transform.SetParent(null);
+        if (collision.tag == PlayerController.MovableTag)
+        {
+            //跳出平台后不再滑动
+            PlayerController.ExtensionVelocity = Vector3.zero;          
+        }
     }
 }

@@ -95,6 +95,7 @@ namespace Controller
         [SerializeField] private Bounds m_characterBounds;
         [SerializeField] private LayerMask m_groundLayer;
         [SerializeField] private LayerMask m_flowerLayer;
+        [SerializeField] public string MovableTag;
         [SerializeField] private int m_detectorCount = 3;
         [SerializeField] private float m_detectionRayLength = 0.1f;
         [SerializeField] [Range(0.1f, 0.3f)] private float m_rayBuffer = 0.1f;
@@ -323,15 +324,18 @@ namespace Controller
         [Header("MOVE")] 
         [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
         private int m_freeColliderIterations = 100;
+        [SerializeField] public Vector3 ExtensionVelocity;
 
         //我们先设置边界,以免碰撞发生
         private void MoveCharacter()
         {
             Vector3 pos = transform.position;
             RawMovement = new Vector3(m_currentHorizontalSpeed, m_currentVerticalSpeed); // Used externally
-            Vector3 move = RawMovement * Time.deltaTime;
-            Vector3 furthestPoint = pos + move;
+            Vector3 Movement = RawMovement + ExtensionVelocity;
 
+            Vector3 move = Movement * Time.deltaTime;
+            Vector3 furthestPoint = pos + move;
+       
             Collider2D hit = Physics2D.OverlapBox(furthestPoint, m_characterBounds.size, 0, m_groundLayer);
 
             if (!hit) 
