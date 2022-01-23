@@ -10,11 +10,9 @@ public class BottomFlower : Interactive
     {
         Type = InteractiveType.kFlower;
     }
-
     public override void OnInteract(GameObject interactedObject)
     {
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnCollision.Invoke();

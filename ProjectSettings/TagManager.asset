@@ -9,6 +9,7 @@ TagManager:
   - Region
   - Shadow
   - ShadowManager
+  - ShadowWithPlayer
   layers:
   - Default
   - TransparentFX

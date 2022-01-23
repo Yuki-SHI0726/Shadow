@@ -106,6 +106,8 @@ public class Controller : MonoBehaviour, IPlayerController
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
         m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
+        m_playerManager.SetOriginalScale(transform.localScale);
+        m_playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -130,10 +132,38 @@ public class Controller : MonoBehaviour, IPlayerController
 
         // Actual movement
         MoveCharacter();
+        Run();
+        Flip(FrameInputImpl.X);
+
     }
 
     public void Activate() { m_active = true; }
     public void Deactive() { m_active = false;}
+    #region Animation
+
+    [SerializeField] private Animator m_playerAnimator;
+
+    void Flip(float X)
+    {
+        if (Mathf.Abs(X) > 0.1f)
+        {
+            if (m_currentHorizontalSpeed >= 0.0f)
+            {
+                transform.localScale = new Vector3 ( Mathf.Abs( transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(-transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
+    }
+
+    void Run()
+    {
+        m_playerAnimator.SetFloat("X", Mathf.Abs(FrameInputImpl.X));
+    }
+
+    #endregion
 
     #region CollisionFunctions 
 
@@ -145,6 +175,8 @@ public class Controller : MonoBehaviour, IPlayerController
         CalculateRayRanged();
 
         bool groundedCheck = RunDetection(m_raysDown);
+
+        m_playerAnimator.SetBool("isOnGround",groundedCheck);
 
         if (m_colDown && !groundedCheck)
         {
@@ -316,6 +348,7 @@ public class Controller : MonoBehaviour, IPlayerController
             m_coyoteUsable = false;
             m_timeLeftGrounded = float.MinValue;
             JumpingThisFrame = true;
+            m_playerAnimator.SetTrigger("Jump");
         }
         else
         {

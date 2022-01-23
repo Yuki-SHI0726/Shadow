@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float m_shadowScale = 1.0f;
     [SerializeField] private Bounds m_bounds;
     [SerializeField] private Bounds m_OriginalcharacterBounds;
+    [SerializeField] private Vector3 m_OriginalScale = Vector3.one;
 
     private static PlayerManager m_instance = null;
 
@@ -33,4 +34,8 @@ public class PlayerManager : MonoBehaviour
     public Bounds GetOriginalcharacterBounds() { return m_OriginalcharacterBounds; }
 
     public void SetOriginalcharacterBounds(Bounds InBounds) { m_OriginalcharacterBounds = InBounds; }
+
+    public Vector3 GetOriginalScale() { return m_OriginalScale; }
+
+    public void SetOriginalScale(Vector3 InScale) { m_OriginalScale=InScale; }
 }

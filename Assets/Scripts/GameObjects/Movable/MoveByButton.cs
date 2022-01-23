@@ -8,6 +8,7 @@ public class MoveByButton : MonoBehaviour
     [SerializeField] private Vector3 m_velocity = Vector3.zero;
     [SerializeField] private Vector3 Shift = Vector3.zero;
     [SerializeField] private float Duration = 2.0f;
+    [SerializeField] private Ease m_ease = Ease.InOutQuart;
 
     private Tweener m_tweenAnimation;
 
