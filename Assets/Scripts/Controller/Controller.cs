@@ -102,6 +102,7 @@ public class Controller : MonoBehaviour, IPlayerController
 
     void Awake()
     {
+        Invoke(nameof(Activate), m_delayInvokeTime);
         FrameInputImpl = new FrameInput();
         Invoke(nameof(Activate), m_delayInvokeTime);
         m_playerManager = GetComponent<PlayerManager>();

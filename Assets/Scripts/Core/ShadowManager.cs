@@ -19,7 +19,7 @@ public class ShadowManager : MonoBehaviour
         m_playerObject = GameObject.FindGameObjectWithTag("Player");
         m_playerManager = m_playerObject.GetComponent<PlayerManager>();
         m_playerController = m_playerObject.GetComponent<Controller>();
-        OriginalShadowRenderScale = m_ShadowRender.transform.localScale; 
+        OriginalShadowRenderScale = m_ShadowRender.transform.localScale;
     }
 
     private void Update()
@@ -33,6 +33,7 @@ public class ShadowManager : MonoBehaviour
             m_ShadowRender.SetActive(false);
         }
 
+        //影子随距离直接变化
         /*if (m_distance < 1.5f)
             m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 0.5f;
         else if (m_distance >= 1.5f && m_distance <= 2.2f)
@@ -91,26 +92,28 @@ public class ShadowManager : MonoBehaviour
             {
                 //只允许在地上放影子
                 //只允许在白天放影子
-                if (m_playerController.Grounded && m_playerManager.IsInWhiteRegion())
+                if (m_playerController.Grounded && m_isClosetoFlower )
                 {
                     m_HasSpawnShadow = true;
+
 
                     m_ShadowPosition = m_playerObject.transform.position;
 
                     //在花的范围内才能改变影子大小
-                    if(m_isClosetoFlower)
+
+                    if (m_distance < 1.5f)
                     {
-                        if (m_distance < 1.5f)
-                            m_playerManager.SetShadowScale(0.5f);
-                        else if(m_distance >=1.5f && m_distance <= 2.2f)
-                        {
-                            m_playerManager.SetShadowScale(1.0f);
-                        }
-                        else
-                        {
-                            m_playerManager.SetShadowScale(2.0f);
-                        }
+                        m_playerManager.SetShadowScale(0.5f);
                     }
+                    else if (m_distance >= 1.5f && m_distance <= 2.2f)
+                    {
+                        m_playerManager.SetShadowScale(1.0f);
+                    }
+                    else
+                    {
+                        m_playerManager.SetShadowScale(2.0f);
+                    }
+
                     SpawnShadow(m_ShadowPosition);
                 }
             }

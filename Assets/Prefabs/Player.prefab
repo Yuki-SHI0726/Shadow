@@ -308,7 +308,6 @@ Transform:
   - {fileID: 6649481901326764258}
   - {fileID: 7779858911753615807}
   - {fileID: 8711463040304723002}
-  - {fileID: 8158532269522214015}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -519,36 +518,6 @@ MonoBehaviour:
   m_playerObject: {fileID: 2109987497368733347}
   m_playeManager: {fileID: 6129895662017692084}
   m_regionTag: Region
---- !u!1 &6246237684158242403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8158532269522214015}
-  m_Layer: 0
-  m_Name: ShadowAnimation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8158532269522214015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6246237684158242403}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3022237, y: 1.3996742, z: -0.044305142}
-  m_LocalScale: {x: -12.876877, y: 14.962201, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2109987497368733349}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8154062965500161403
 GameObject:
   m_ObjectHideFlags: 0
