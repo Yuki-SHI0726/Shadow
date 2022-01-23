@@ -10,7 +10,8 @@ public enum InteractiveType
     kFlower,
     kStar,
     kMemoryFragment,
-    kButton
+    kButton,
+    kThorn
 }
 
 /// <summary>

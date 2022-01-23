@@ -24,7 +24,7 @@ public class Controller : MonoBehaviour, IPlayerController
     private Vector3 m_lastPosition = Vector3.zero;
     private float m_currentHorizontalSpeed = 0.0f;
     private float m_currentVerticalSpeed = 0.0f;
-    private bool m_active = true;
+    private bool m_active = false;
     #endregion
 
     #region CollisionVariables
@@ -103,6 +103,7 @@ public class Controller : MonoBehaviour, IPlayerController
     void Awake()
     {
         FrameInputImpl = new FrameInput();
+        Invoke(nameof(Activate), m_delayInvokeTime);
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
         m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
