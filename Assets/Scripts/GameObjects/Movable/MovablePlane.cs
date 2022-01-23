@@ -30,6 +30,7 @@ public class MovablePlane : MonoBehaviour
             .SetDelay(m_delayTime)
             .SetAutoKill(false)
             .OnRewind(OnRewind);
+
         m_lastPosition = transform.position;
     }
 
