@@ -12,9 +12,7 @@ public class ShadowManager : MonoBehaviour
     [SerializeField] private float m_distance;
     [SerializeField] private bool m_isClosetoFlower;
     [SerializeField] private GameObject m_ShadowRender;
-    [SerializeField] private GameObject m_ShadowAnimation;
     [SerializeField] private  Vector3 OriginalShadowRenderScale;
-    [SerializeField] private Animator m_ShadowAnimator;
 
     void Start()
     {
@@ -22,7 +20,6 @@ public class ShadowManager : MonoBehaviour
         m_playerManager = m_playerObject.GetComponent<PlayerManager>();
         m_playerController = m_playerObject.GetComponent<Controller>();
         OriginalShadowRenderScale = m_ShadowRender.transform.localScale;
-        m_ShadowAnimator = m_ShadowAnimation.GetComponent<Animator>();
     }
 
     private void Update()
