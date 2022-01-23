@@ -53,7 +53,7 @@ public class Thron : Interactive
             yield return null;
         }
 
-        // Go to the nearest respawn point
+        // Go to the nearest left respawn point
         Vector3 respawnPointToTeleport = Vector3.zero;
         float closestDistance = float.MaxValue;
         foreach (RespawnPoint respawnPoint in FindObjectsOfType<RespawnPoint>())
@@ -62,9 +62,11 @@ public class Thron : Interactive
             Vector3 playerToRespawnPoint = respawnPoint.transform.position - player.transform.position;
             float distance = playerToRespawnPoint.magnitude;
 
-            // If the current respawn point is the nearest one, set value for teleporting to this candidate
-            if (distance < closestDistance)
+            // If the current respawn point is the nearest one, and it's on player's left
+            if (distance < closestDistance &&
+                respawnPoint.transform.position.x < player.transform.position.x)    
             {
+                // set value for teleporting to this candidate
                 closestDistance = distance;
                 respawnPointToTeleport = respawnPoint.transform.position;
             }
