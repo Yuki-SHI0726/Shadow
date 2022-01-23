@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555862278}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12f5e2b5e5c46b74ab6e3e002af1f1b8, type: 3}
   m_Name: 
@@ -3375,7 +3375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2109987497368733347, guid: 259d077b6c6f89743b6668756985279e, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Hardy
       objectReference: {fileID: 0}
     - target: {fileID: 2109987497368733349, guid: 259d077b6c6f89743b6668756985279e, type: 3}
       propertyPath: m_RootOrder
