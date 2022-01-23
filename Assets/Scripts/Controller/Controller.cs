@@ -67,7 +67,7 @@ public class Controller : MonoBehaviour, IPlayerController
 
     #region JumpVariables
     [Header("JUMPING")]
-    [SerializeField] private float m_jumpHeight = 30;
+    [SerializeField] public float m_jumpHeight = 30;
     [SerializeField] private float m_jumpApexThreshold = 10f;
     [SerializeField] private float m_coyoteTimeThreshold = 0.1f;
     [SerializeField] private float m_jumpBuffer = 0.1f;

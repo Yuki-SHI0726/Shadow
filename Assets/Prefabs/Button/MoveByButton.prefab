@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1875344507}
   m_Layer: 0
   m_Name: MoveByButton
-  m_TagString: Untagged
+  m_TagString: MovablePlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27087308103acff47aca0f2ae4ba4c1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b0c679799a2e47a8a576d97247fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_velocity: {x: 0, y: 0, z: 0}
   Shift: {x: 0, y: 10, z: 0}
   Duration: 2
+  m_ease: 13
 --- !u!50 &1875344508
 Rigidbody2D:
   serializedVersion: 4
@@ -135,9 +137,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

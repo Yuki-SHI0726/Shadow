@@ -34,7 +34,7 @@ public class ShadowManager : MonoBehaviour
         }
 
         //影子随距离直接变化
-        /*if (m_distance < 1.5f)
+        if (m_distance < 1.5f)
             m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 0.5f;
         else if (m_distance >= 1.5f && m_distance <= 2.2f)
         {
@@ -43,7 +43,7 @@ public class ShadowManager : MonoBehaviour
         else
         {
             m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 2.0f;
-        }*/
+        }
 
     }
 
@@ -104,14 +104,17 @@ public class ShadowManager : MonoBehaviour
                     if (m_distance < 1.5f)
                     {
                         m_playerManager.SetShadowScale(0.5f);
+                        m_playerController.m_jumpHeight = 30.0f;
                     }
                     else if (m_distance >= 1.5f && m_distance <= 2.2f)
                     {
                         m_playerManager.SetShadowScale(1.0f);
+                        m_playerController.m_jumpHeight = 30.0f;
                     }
                     else
                     {
                         m_playerManager.SetShadowScale(2.0f);
+                        m_playerController.m_jumpHeight = 40.0f;
                     }
 
                     SpawnShadow(m_ShadowPosition);
