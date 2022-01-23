@@ -30,6 +30,12 @@ public class MemoryFragment : Interactive
         string ImageName = "MemoryFragment_Image_" + m_id.ToString();
         Image image = GameObject.Find(ImageName).GetComponent<Image>();
 
+        ++GameManager.CollectedMemoryFragmentCount;
+        if (GameManager.CollectedMemoryFragmentCount == GameManager.TotalMemoryFragmentCount)
+        {
+            FindObjectOfType<ConversationHandler>().StartConversation(ConversationType.kEnd);
+        }
+
         // Enable it
         image.enabled = true;
 

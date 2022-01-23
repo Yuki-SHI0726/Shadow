@@ -16,7 +16,6 @@ public class Controller : MonoBehaviour, IPlayerController
     public bool Grounded => m_colDown;
 
     [SerializeField] private PlayerManager m_playerManager;
-
     [SerializeField] private ShadowManager m_shadowManager;
     #endregion
 
@@ -25,7 +24,7 @@ public class Controller : MonoBehaviour, IPlayerController
     private Vector3 m_lastPosition = Vector3.zero;
     private float m_currentHorizontalSpeed = 0.0f;
     private float m_currentVerticalSpeed = 0.0f;
-    private bool m_active = false;
+    private bool m_active = true;
     #endregion
 
     #region CollisionVariables
@@ -104,7 +103,6 @@ public class Controller : MonoBehaviour, IPlayerController
     void Awake()
     {
         FrameInputImpl = new FrameInput();
-        Invoke(nameof(Activate), m_delayInvokeTime);
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
         m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
@@ -134,7 +132,8 @@ public class Controller : MonoBehaviour, IPlayerController
         MoveCharacter();
     }
 
-    void Activate() { m_active = true; }
+    public void Activate() { m_active = true; }
+    public void Deactive() { m_active = false;}
 
     #region CollisionFunctions 
 

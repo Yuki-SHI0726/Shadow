@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Guider for Hardy
+/// NPC Guider for Hardy
 /// </summary>
 public class Circe : NPC
 {
-    
+
 }

@@ -11,74 +11,85 @@ using UnityEngine;
 public class ConversationHandler : MonoBehaviour
 {
     [SerializeField] private Image m_conversationImage = null;
-    [SerializeField] private Image m_npcImage = null;
+    [SerializeField] private Image m_speakerImage = null;
     [SerializeField] private Text m_conversationText = null;
     [SerializeField] private Text m_conversationPromptText = null;
-    [SerializeField] private KeyCode m_startConversationKey = KeyCode.E;
-    [SerializeField] private KeyCode m_endConversationKey = KeyCode.R;
-    private List<NPC> m_npcs;     // Stores all the interactivable NPCs
+    [SerializeField] private KeyCode m_conversationKey = KeyCode.E;
+    private NPC m_circe = null;
+    [SerializeField] private Sprite m_shadowSprite = null;
+
+    #region ConversationVariables
+    // Conversation variables
+    private const char kSpeakerCirce = 'C';
+    private const char kSpeakerHardy = 'H';
+    private const char kSpeakerShadow = 'S';
     private int m_messageIndex = 0;
-    private static ReadOnlyCollection<string> s_kConversation = new ReadOnlyCollection<string>(new string[]
+    private static ReadOnlyCollection<string> s_kStartConversation = new ReadOnlyCollection<string>(new string[]
     {
-        "你瞅啥",
-        "瞅你咋地",
-        "你再瞅一试试",
-        "试试就试试",
-        "两百多斤的女巫不讲武德",
-        "你是来故意找茬的？",
+        "C嗯呐，你醒了吗？太好啦！",
+        "H......",
+        "C感觉怎么样？有没有哪里不舒服？",
+        "H你……额，你嗯，我，我那个，嗯，为什么会在这里？",
+        "C噗，你就只想问这个？",
+        "H啊，啊对，我想问这个…",
+        "C你可真是个有趣的人呀",
+        "H欸，啊，呃那个，那个…我身体没有不舒服的地方，但，但好像什么都想不起来了…",
+        "C我想也是，之前你从山上摔下来受了重伤呢，救你的时候魔法出了点问题，现在你的记忆碎片应该散落在森林里了呢，来，进入我的传送门，它能帮助你找回记忆",
     });
+    private static ReadOnlyCollection<string> s_kSpecialConversation = new ReadOnlyCollection<string>(new string[]
+    {
+        "H啊，啊啊啊啊啊",
+        "H我想起来了，想起来了，原来，原来我，我竟然是影子吗？！！",
+        "H我脚下的，脚下的影子，原来，原来才是，真 正 的 我 吗？",
+        "H啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊….",
+
+    });
+    private static ReadOnlyCollection<string> s_kEndConversation = new ReadOnlyCollection<string>(new string[]
+    {
+        "SCirce，他又昏过去了，我们成功了吗？",
+        "H嗯呐，别急，让我来看看",
+        "S按照之前的合约，他所有的记忆都交给你了，现在你该履行合约，把他变成影子，让我成为Hardy了吧？",
+        "H哈哈哈，小影子，你还是这么急躁呢，当然啦，我可是个守信的女巫呢",
+        "H嗯呐，不过，你说，我把你们的记忆都交换一下，会发生什么呢？呐！我真期待呢",
+    });
+    #endregion
 
     private void Start()
     {
-        m_npcs = new List<NPC>(FindObjectsOfType<NPC>());
+        // Grab circe
+        m_circe = FindObjectOfType<NPC>();
+        Debug.Assert(m_circe != null);
 
-        DisableUI();
+        // Start conversation coroutine
+        StartConversation(ConversationType.kStart);
     }
 
-    private void Update()
+    /// <summary>
+    /// Trigger conversation when different situation
+    /// </summary>
+    /// <param name="type"></param>
+    public void StartConversation(ConversationType type)
     {
-        // Grab the player's position
-        Vector2 playerPosition2D = new Vector2(transform.position.x, transform.position.y);
+        // Reset data
+        m_messageIndex = 0;
 
-        // Loop through all the npcs
-        NPC nearbyNPC = null;
-        foreach (NPC npc in m_npcs)
+        // Set circe appears nearby
+        m_circe.GetComponent<SpriteRenderer>().enabled = true;
+
+        // Get the corresponding conversation content to run
+        switch (type)
         {
-            // The npc's position and distance between the script holder
-            Vector2 npcPosition2D = new Vector2(npc.transform.position.x, npc.transform.position.y);
-            float distance = (playerPosition2D - npcPosition2D).magnitude;
+            case ConversationType.kStart:
+                StartCoroutine(ConversationCoroutine(s_kStartConversation));
+                break;
 
-            // If we are close enough to the current npc
-            if (distance < GameManager.kCloseDistanceToInteract)
-            {
-                nearbyNPC = npc;
-                EnableUI(npc);
-            }
-        }
+            case ConversationType.kSpecial:
+                StartCoroutine(ConversationCoroutine(s_kSpecialConversation));
+                break;
 
-        // Temp Hack
-        if (nearbyNPC != null)
-        {
-            if (Input.GetKeyDown(m_startConversationKey))
-            {
-                if (m_messageIndex % 2 == 0)
-                {
-                    m_conversationText.text = name;
-                }
-                else
-                {
-                    m_conversationText.text = nearbyNPC.name;
-                }
-                
-                m_conversationText.text += ": " + s_kConversation[m_messageIndex];
-                ++m_messageIndex;
-                m_messageIndex %= s_kConversation.Count;
-            }
-        }
-
-        if (nearbyNPC == null)
-        {
-            DisableUI();
+            case ConversationType.kEnd:
+                StartCoroutine(ConversationCoroutine(s_kEndConversation));
+                break;
         }
     }
 
@@ -87,31 +98,101 @@ public class ConversationHandler : MonoBehaviour
     /// </summary>
     private void DisableUI()
     {
-        m_npcImage.enabled = false;
+        m_speakerImage.enabled = false;
+        m_speakerImage.sprite = null;
         m_conversationImage.enabled = false;
         m_conversationText.enabled = false;
         m_conversationPromptText.enabled = false;
-        m_npcImage.sprite = null;
     }
 
     /// <summary>
     /// Show conversation UI panel
     /// </summary>
-    /// <param name="npc">The npc to interact with</param>
-    private void EnableUI(NPC npc)
+    private void EnableUI(ReadOnlyCollection<string> conversation)
     {
-        m_npcImage.enabled = true;
+        m_speakerImage.enabled = true;
         m_conversationImage.enabled = true;
         m_conversationText.enabled = true;
         m_conversationPromptText.enabled = true;
+        SetConversationUI(conversation);
+    }
 
-        if (m_messageIndex % 2 == 0)
+    /// <summary>
+    /// Coroutine for conversation implementation
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ConversationCoroutine(ReadOnlyCollection<string> conversation)
+    {
+        // Disable player input, enable conversation UI
+        GetComponent<Controller>().Deactive();
+        EnableUI(conversation);
+
+        while (true)
         {
-            m_npcImage.sprite = npc.GetComponent<SpriteRenderer>().sprite;
+            if (Input.GetKeyDown(m_conversationKey))
+            {
+                // If we hit the current conversation's count,
+                // means the conversation is over. Exit this while loop
+                if (m_messageIndex >= conversation.Count)
+                {
+                    break;
+                }
+
+                SetConversationUI(conversation);
+            }
+
+            yield return null;
         }
-        else
+
+        // Set circe invisible
+        m_circe.GetComponent<SpriteRenderer>().enabled = false;
+
+        // Enable player input, disable conversation UI
+        GetComponent<Controller>().Activate();
+        DisableUI();
+    }
+
+    /// <summary>
+    /// Parse 
+    /// </summary>
+    /// <param name="character"></param>
+    /// <returns></returns>
+    private SpeakerData GetSpeakerData(char character)
+    {
+        if (character == kSpeakerHardy)
         {
-            m_npcImage.sprite = GetComponent<SpriteRenderer>().sprite;
+            return new SpeakerData(GetComponent<SpriteRenderer>().sprite, GetComponent<Controller>().name);
         }
+        else if (character == kSpeakerCirce)
+        {
+            return new SpeakerData(m_circe.GetComponent<SpriteRenderer>().sprite, m_circe.name);
+        }
+        else if (character == kSpeakerShadow)
+        {
+            return new SpeakerData(m_shadowSprite, "Shadow");
+        }
+
+        Debug.LogError("Invalid character in conversation");
+        return new SpeakerData();
+    }
+
+    /// <summary>
+    /// Set conversation UI based on current conversation
+    /// </summary>
+    /// <param name="conversation"></param>
+    private void SetConversationUI(ReadOnlyCollection<string> conversation)
+    {
+        SpeakerData speakerData = GetSpeakerData(conversation[m_messageIndex][0]);
+
+        // Image
+        m_speakerImage.sprite = speakerData.Sprite;
+
+        // Name
+        m_conversationText.text = speakerData.Name;
+
+        // Content
+        m_conversationText.text += ": " + conversation[m_messageIndex].Substring(1);
+
+        ++m_messageIndex;
     }
 }

@@ -11,7 +11,7 @@ public class BottomFlower : Interactive
         Type = InteractiveType.kFlower;
     }
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactedObject)
     {
     }
 

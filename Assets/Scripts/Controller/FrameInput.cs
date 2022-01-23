@@ -9,6 +9,7 @@ public class FrameInput
     public bool JumpDown;
     public bool JumpUp;
     public bool Shadow;
+    public bool Enabled = true;
 
     /// <summary>
     /// Gather the input at this frame
@@ -16,6 +17,11 @@ public class FrameInput
     /// <returns>Jump time if we jumped</returns>
     public float GatherInput()
     {
+        if (!Enabled)
+        {
+            return 0.0f;
+        }
+
         JumpDown = Input.GetButtonDown("Jump");
         JumpUp = Input.GetButtonUp("Jump");
         X = Input.GetAxisRaw("Horizontal");
