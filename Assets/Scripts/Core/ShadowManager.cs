@@ -11,12 +11,41 @@ public class ShadowManager : MonoBehaviour
     [SerializeField] private string m_flowerTag;
     [SerializeField] private float m_distance;
     [SerializeField] private bool m_isClosetoFlower;
+    [SerializeField] private GameObject m_ShadowRender;
+    [SerializeField] private  Vector3 OriginalShadowRenderScale;
 
     void Start()
     {
         m_playerObject = GameObject.FindGameObjectWithTag("Player");
         m_playerManager = m_playerObject.GetComponent<PlayerManager>();
         m_playerController = m_playerObject.GetComponent<Controller>();
+        OriginalShadowRenderScale = m_ShadowRender.transform.localScale; 
+    }
+
+    private void Update()
+    {
+        if(m_isClosetoFlower)
+        {
+            m_ShadowRender.SetActive(true);
+        }
+        else
+        {
+            m_ShadowRender.SetActive(false);
+        }
+
+        /*if (m_distance < 1.5f)
+            m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 0.5f;
+        else if (m_distance >= 1.5f && m_distance <= 2.2f)
+        {
+            m_ShadowRender.transform.localScale = OriginalShadowRenderScale;
+        }
+        else
+        {
+            m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 2.0f;
+        }*/
+
+       
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -73,9 +102,9 @@ public class ShadowManager : MonoBehaviour
                     //在花的范围内才能改变影子大小
                     if(m_isClosetoFlower)
                     {
-                        if (m_distance < 1.2f)
+                        if (m_distance < 1.5f)
                             m_playerManager.SetShadowScale(0.5f);
-                        else if(m_distance >=1.2f && m_distance <= 1.7f)
+                        else if(m_distance >=1.5f && m_distance <= 2.2f)
                         {
                             m_playerManager.SetShadowScale(1.0f);
                         }
@@ -110,6 +139,10 @@ public class ShadowManager : MonoBehaviour
         SpawnedShadow = GameObject.Instantiate(Shadow);
         SpawnedShadow.transform.position = CalculateShadowPosition(shadowPosition);
         SpawnedShadow.transform.localScale *= (m_playerManager.GetShadowScale());
+        if(m_playerObject.transform.localScale.x > 0  )
+        {
+            SpawnedShadow.transform.localScale = new Vector3(- SpawnedShadow.transform.localScale.x, SpawnedShadow.transform.localScale.y, SpawnedShadow.transform.localScale.z);
+        }
     }
 
     Vector3 CalculateShadowPosition(Vector3 shadowPosition)
