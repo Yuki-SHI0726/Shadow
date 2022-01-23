@@ -21,7 +21,6 @@ public class Controller : MonoBehaviour, IPlayerController
 
     #region ControllerVariables
     [SerializeField] private float m_delayInvokeTime = 0.5f;
-    [SerializeField] private KeyCode m_reviveKey = KeyCode.R;
     private Vector3 m_lastPosition = Vector3.zero;
     private float m_currentHorizontalSpeed = 0.0f;
     private float m_currentVerticalSpeed = 0.0f;
@@ -137,12 +136,11 @@ public class Controller : MonoBehaviour, IPlayerController
         MoveCharacter();
         Run();
         Flip(FrameInputImpl.X);
-        CheckRevive();
+
     }
 
     public void Activate() { m_active = true; }
     public void Deactive() { m_active = false;}
-
     #region Animation
 
     [SerializeField] private Animator m_playerAnimator;
@@ -167,20 +165,6 @@ public class Controller : MonoBehaviour, IPlayerController
         m_playerAnimator.SetFloat("X", Mathf.Abs(FrameInputImpl.X));
     }
 
-    #endregion
-
-    #region ReviveFunctions
-
-    /// <summary>
-    /// Send player to the nearest respawn point
-    /// </summary>
-    private void CheckRevive()
-    {
-        if (Input.GetKeyDown(m_reviveKey))
-        {
-            transform.position = GameManager.GetNearestSpawnPoint(gameObject);
-        }
-    }
     #endregion
 
     #region CollisionFunctions 
@@ -464,4 +448,5 @@ public class Controller : MonoBehaviour, IPlayerController
         }
     }
     #endregion
+
 }
