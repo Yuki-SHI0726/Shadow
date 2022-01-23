@@ -58,13 +58,7 @@ public class ShadowManager : MonoBehaviour
         {
             if (m_HasSpawnShadow)
             {
-                m_HasSpawnShadow = false;
-
                 FlashBack(m_ShadowPosition);
-                Destroy(SpawnedShadow);
-
-                m_playerObject.transform.localScale = Vector3.one;
-                m_playerObject.transform.localScale *= m_playerManager.GetShadowScale();
             }
             else
             {
@@ -99,7 +93,15 @@ public class ShadowManager : MonoBehaviour
     void FlashBack(Vector3 shadowPosition)
     {
         OnFlushBack.Invoke();
+
+        m_HasSpawnShadow = false;
+
         m_playerObject.transform.position = shadowPosition;
+
+        m_playerObject.transform.localScale = m_playerManager.GetOriginalScale();
+        m_playerObject.transform.localScale *= m_playerManager.GetShadowScale();
+
+        Destroy(SpawnedShadow);
     }
 
     void SpawnShadow(Vector3 shadowPosition)
@@ -107,7 +109,7 @@ public class ShadowManager : MonoBehaviour
         //直接在规定的位置创建预制体
         SpawnedShadow = GameObject.Instantiate(Shadow);
         SpawnedShadow.transform.position = CalculateShadowPosition(shadowPosition);
-        SpawnedShadow.transform.localScale *= m_playerManager.GetShadowScale();
+        SpawnedShadow.transform.localScale *= (m_playerManager.GetShadowScale());
     }
 
     Vector3 CalculateShadowPosition(Vector3 shadowPosition)

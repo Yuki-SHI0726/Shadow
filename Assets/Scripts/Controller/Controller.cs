@@ -108,6 +108,7 @@ public class Controller : MonoBehaviour, IPlayerController
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
         m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
+        m_playerManager.SetOriginalScale(transform.localScale);
         m_playerAnimator = GetComponent<Animator>();
     }
 

@@ -15,11 +15,12 @@ public class MovablePlane : MonoBehaviour
     [SerializeField] private LoopType m_moveloopType = LoopType.Yoyo;
     [SerializeField] private int m_loops = -1; // -1 means infinite
     [SerializeField] private float m_delayTime = 1.0f;
+    [SerializeField] private Ease m_ease = Ease.Linear;
     
     private Tweener m_tweenAnimationOrigin;
     private Tweener m_tweenAnimationHigher;
     private Vector3 m_lastPosition = Vector3.zero;
-    private bool m_ToogleHigher = false;
+    private bool m_Up = true; // true if the flower go up
 
     public Vector3 GetVelocity() { return m_velocity; }
 
@@ -28,6 +29,7 @@ public class MovablePlane : MonoBehaviour
         m_tweenAnimationOrigin = transform.DOMove(transform.position + m_shift, m_duration)
             .SetLoops(m_loops, m_moveloopType)
             .SetDelay(m_delayTime)
+            .SetEase(m_ease)
             .SetAutoKill(false)
             .OnRewind(OnRewind);
 
@@ -42,11 +44,12 @@ public class MovablePlane : MonoBehaviour
 
     public void FlowerMove()
     {
-        m_tweenAnimationOrigin.SmoothRewind();
+        m_tweenAnimationOrigin.Flip();
     }
 
    public void OnRewind()
     {
+        m_Up = true;
         m_tweenAnimationOrigin.Restart();
     }
 }

@@ -13,7 +13,6 @@ public class BottomFlower : Interactive
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("log");
         OnCollision.Invoke();
     }
 }
