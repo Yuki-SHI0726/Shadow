@@ -24,7 +24,7 @@ public class ShadowManager : MonoBehaviour
 
     private void Update()
     {
-        if(m_isClosetoFlower)
+        if(m_isClosetoFlower && !m_HasSpawnShadow)
         {
             m_ShadowRender.SetActive(true);
         }
@@ -43,8 +43,6 @@ public class ShadowManager : MonoBehaviour
         {
             m_ShadowRender.transform.localScale = OriginalShadowRenderScale * 2.0f;
         }*/
-
-       
 
     }
 
