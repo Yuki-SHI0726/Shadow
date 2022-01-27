@@ -15,11 +15,10 @@ public class ConversationHandler : MonoBehaviour
     [SerializeField] private Text m_conversationText = null;
     [SerializeField] private Text m_conversationPromptText = null;
     [SerializeField] private KeyCode m_conversationKey = KeyCode.E;
-    private NPC m_circe = null;
     [SerializeField] private Sprite m_shadowSprite = null;
+    private NPC m_circe = null;
 
     #region ConversationVariables
-    // Conversation variables
     private const char kSpeakerCirce = 'C';
     private const char kSpeakerHardy = 'H';
     private const char kSpeakerShadow = 'S';
@@ -65,9 +64,9 @@ public class ConversationHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Trigger conversation when different situation
+    /// Trigger conversation on different situation
     /// </summary>
-    /// <param name="type"></param>
+    /// <param name="type">The conversation's type to start</param>
     public void StartConversation(ConversationType type)
     {
         // Reset data
@@ -114,7 +113,7 @@ public class ConversationHandler : MonoBehaviour
         m_conversationImage.enabled = true;
         m_conversationText.enabled = true;
         m_conversationPromptText.enabled = true;
-        SetConversationUI(conversation);
+        UpdateConversationUI(conversation);
     }
 
     /// <summary>
@@ -138,7 +137,7 @@ public class ConversationHandler : MonoBehaviour
                     break;
                 }
 
-                SetConversationUI(conversation);
+                UpdateConversationUI(conversation);
             }
 
             yield return null;
@@ -180,7 +179,7 @@ public class ConversationHandler : MonoBehaviour
     /// Set conversation UI based on current conversation
     /// </summary>
     /// <param name="conversation"></param>
-    private void SetConversationUI(ReadOnlyCollection<string> conversation)
+    private void UpdateConversationUI(ReadOnlyCollection<string> conversation)
     {
         SpeakerData speakerData = GetSpeakerData(conversation[m_messageIndex][0]);
 

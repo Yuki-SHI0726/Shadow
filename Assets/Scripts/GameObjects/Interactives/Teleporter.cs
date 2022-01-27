@@ -8,7 +8,6 @@ using UnityEngine;
 public class Teleporter : Interactive
 {
     [SerializeField] private Vector3 m_destination = Vector3.zero;
-    private int m_id = 0; // Unique ID for this teleporter
     private bool m_canTeleport = false;
 
     public override void OnInteract(GameObject interactedObject)

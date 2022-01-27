@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Used for collision detection in controller
+/// </summary>
 public struct RayRange
 {
     public RayRange(float x1, float y1, float x2, float y2, Vector2 dir)

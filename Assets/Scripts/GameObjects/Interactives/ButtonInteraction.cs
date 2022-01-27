@@ -14,7 +14,6 @@ public class ButtonInteraction : Interactive
 
     private void Start()
     {
-        Type = InteractiveType.kButton;
         m_boxCollider = GetComponent<BoxCollider2D>();
     }
 

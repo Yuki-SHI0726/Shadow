@@ -7,13 +7,11 @@ using UnityEngine;
 /// </summary>
 public class InteractionManager : MonoBehaviour
 {
-    [SerializeField] private  GameObject PlayerObject;
-    [SerializeField] private Controller PlayerController;
+    private Controller m_playerController = null;
 
     void Start()
     {
-        PlayerObject = GameObject.FindGameObjectWithTag("Player");
-        PlayerController = PlayerObject.GetComponent<Controller>();                          
+        m_playerController = GetComponentInParent<Controller>();                        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -22,26 +20,26 @@ public class InteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnInteract(PlayerObject);
+            Interactive.OnInteract(m_playerController.gameObject);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Follow the movale plane
-        if (collision.tag == PlayerController.MovableTag)
+        if (collision.tag == m_playerController.MovableTag)
         {
             MovablePlane Plane = collision.gameObject.GetComponent<MovablePlane>();
             if (Plane != null)
             {
-                PlayerController.ExtensionVelocity = Plane.GetVelocity();
+                m_playerController.ExtensionVelocity = Plane.GetVelocity();
             }
         }
 
         Interactive interactive = collision.gameObject.GetComponent<Interactive>();
         if (interactive != null)
         {
-            interactive.OnStayInteract(PlayerObject);
+            interactive.OnStayInteract(m_playerController.gameObject);
         }
     }
 
@@ -51,13 +49,13 @@ public class InteractionManager : MonoBehaviour
 
         if (Interactive != null)
         {
-            Interactive.OnExitInteract(PlayerObject);
+            Interactive.OnExitInteract(m_playerController.gameObject);
         }
 
-        if (collision.tag == PlayerController.MovableTag)
+        if (collision.tag == m_playerController.MovableTag)
         {
             // Stop following the movale plane
-            PlayerController.ExtensionVelocity = Vector3.zero;          
+            m_playerController.ExtensionVelocity = Vector3.zero;          
         }
     }
 }

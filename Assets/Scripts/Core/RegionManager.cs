@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manager for region
+/// </summary>
 public class RegionManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_playerObject = null;
     [SerializeField] private PlayerManager m_playeManager = null;
-    [SerializeField] private string m_regionTag = "";
+    private string m_regionTag = "Region";
 
     void Start()
     {

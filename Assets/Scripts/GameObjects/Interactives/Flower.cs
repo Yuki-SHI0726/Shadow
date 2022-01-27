@@ -5,8 +5,4 @@ using UnityEngine;
 
 public class Flower : Interactive
 {   
-    private void Start()
-    {
-        Type = InteractiveType.kFlower;
-    }
 }

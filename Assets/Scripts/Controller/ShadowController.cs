@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class ShadowController : MonoBehaviour
 {
-    [SerializeField] private PlayerManager m_playerManager;
-    [SerializeField] private GameObject m_shadowManagerGameObejct;
-    [SerializeField] private ShadowManager m_shadowManager;
+    [SerializeField] private PlayerManager m_playerManager = null;
+    [SerializeField] private GameObject m_shadowManagerGameObejct = null;
+    [SerializeField] private ShadowManager m_shadowManager = null;
     public Vector3 RawMovement { get; private set; }
     public bool Grounded => m_colDown;
     public Vector3 Velocity { get; private set; }
 
     #region ControllerVariables
-    [SerializeField] private float m_delayInvokeTime = 0.5f;
-    private Vector3 m_lastPosition = Vector3.zero;
     private float m_currentHorizontalSpeed = 0.0f;
     private float m_currentVerticalSpeed = 0.0f;
-    private bool m_active = false;
     #endregion
 
     #region CollisionVariables
@@ -43,8 +40,6 @@ public class ShadowController : MonoBehaviour
     #region GravityVariables
     [Header("GRAVITY")]
     [SerializeField] private float m_fallClamp = -40f;
-    [SerializeField] private float m_minFallSpeed = 80f;
-    [SerializeField] private float m_maxFallSpeed = 120f;
     private float m_fallSpeed = 0.0f;
     #endregion
 

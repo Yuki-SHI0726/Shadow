@@ -14,7 +14,6 @@ public class ButtonDelayReset : Interactive
 
     private void Start()
     {
-        Type = InteractiveType.kButton;
         m_boxCollider = GetComponent<BoxCollider2D>();
     }
 

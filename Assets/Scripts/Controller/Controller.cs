@@ -15,8 +15,8 @@ public class Controller : MonoBehaviour, IPlayerController
     public Vector3 RawMovement { get; private set; }
     public bool Grounded => m_colDown;
 
-    [SerializeField] private PlayerManager m_playerManager;
-    [SerializeField] private ShadowManager m_shadowManager;
+    [SerializeField] private PlayerManager m_playerManager = null;
+    [SerializeField] private ShadowManager m_shadowManager = null;
     #endregion
 
     #region ControllerVariables
@@ -30,10 +30,9 @@ public class Controller : MonoBehaviour, IPlayerController
 
     #region CollisionVariables
     [Header("COLLISION")]
-    [SerializeField] private Bounds m_characterBounds;
-    [SerializeField] private LayerMask m_groundLayer;
-    [SerializeField] private LayerMask m_interactiveLayer;
-    [SerializeField] public string MovableTag;
+    [SerializeField] private Bounds m_characterBounds = new Bounds(Vector3.zero, new Vector3(0.5f, 0.5f, 0.0f));
+    [SerializeField] private LayerMask m_groundLayer = new LayerMask();
+    [SerializeField] public string MovableTag = "MovablePlane";
     [SerializeField] private int m_detectorCount = 3;
     [SerializeField] private float m_detectionRayLength = 0.1f;
     [SerializeField] [Range(0.1f, 0.3f)] private float m_rayBuffer = 0.1f;
@@ -46,7 +45,7 @@ public class Controller : MonoBehaviour, IPlayerController
     private bool m_colDown  = false;
     private bool m_colLeft  = false;
     private float m_timeLeftGrounded = 0.0f;
-    private Bounds m_OriginalcharacterBounds;
+    private Bounds m_OriginalcharacterBounds = new Bounds();
     #endregion
 
     #region WalkVariables
@@ -103,9 +102,8 @@ public class Controller : MonoBehaviour, IPlayerController
 
     void Awake()
     {
-        Invoke(nameof(Activate), m_delayInvokeTime);
         FrameInputImpl = new FrameInput();
-        Invoke(nameof(Activate), m_delayInvokeTime);
+        Invoke(nameof(Activate), m_delayInvokeTime);        // Wait for other functionalities setup
         m_playerManager = GetComponent<PlayerManager>();
         m_OriginalcharacterBounds = m_characterBounds;
         m_playerManager.SetOriginalcharacterBounds(m_OriginalcharacterBounds);
@@ -210,11 +208,6 @@ public class Controller : MonoBehaviour, IPlayerController
         m_colLeft = RunDetection(m_raysLeft);
         m_colRight = RunDetection(m_raysRight);
 
-        bool RunInteractivesDection(RayRange range)
-        {
-            return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, m_detectionRayLength, m_interactiveLayer));
-        }
-
         bool RunDetection(RayRange range)
         {
             return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, m_detectionRayLength, m_groundLayer));
@@ -299,11 +292,11 @@ public class Controller : MonoBehaviour, IPlayerController
         }
         else
         {
-            // 如果没有输入的话,计算当前速度
+            // Calculate speed if no inputs
             m_currentHorizontalSpeed = Mathf.MoveTowards(m_currentHorizontalSpeed, 0, m_deAcceleration * Time.deltaTime);
         }
 
-        // 如果有碰撞,则不运动
+        // Don't move if collisions occur
         if (m_currentHorizontalSpeed > 0 && m_colRight || m_currentHorizontalSpeed < 0 && m_colLeft)
         {
             m_currentHorizontalSpeed = 0;
@@ -325,13 +318,13 @@ public class Controller : MonoBehaviour, IPlayerController
         }
         else
         {
-            // 如果我们提前停止跳跃,在向上的时候施加向下的力
+            // If we stopped jumping earlier, adding downward force when jumping up
             float fallSpeed = m_endedJumpEarly && m_currentVerticalSpeed > 0 ? m_fallSpeed * m_jumpEndEarlyGravityModifier : m_fallSpeed;
 
-            // 下落
+            // Falling
             m_currentVerticalSpeed -= fallSpeed * Time.deltaTime;
 
-            // Clamp下落速度
+            // Clamp falling speed
             if (m_currentVerticalSpeed < m_fallClamp)
             {
                 m_currentVerticalSpeed = m_fallClamp;

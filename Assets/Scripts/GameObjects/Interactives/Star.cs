@@ -7,12 +7,7 @@ using UnityEngine;
 /// Star object
 /// </summary>
 public class Star : Interactive
-{
-    void Start()
-    {
-        Type = InteractiveType.kStar;
-    }
-
+{ 
     public override void OnInteract(GameObject interactedObject)
     {
         // Find the CollectedStarCountText
