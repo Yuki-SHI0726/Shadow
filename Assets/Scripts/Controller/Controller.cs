@@ -178,7 +178,7 @@ public class Controller : MonoBehaviour, IPlayerController
     {
         if (Input.GetKeyDown(m_reviveKey))
         {
-            transform.position = GameManager.GetNearestSpawnPoint(gameObject);
+            transform.position = RespawnPoint.GetNearestSpawnPoint(gameObject);
         }
     }
     #endregion

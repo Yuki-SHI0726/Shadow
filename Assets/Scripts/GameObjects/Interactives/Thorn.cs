@@ -54,7 +54,7 @@ public class Thorn : Interactive
         }
 
         // Go to the nearest left respawn point
-        player.transform.position = GameManager.GetNearestSpawnPoint(player.gameObject);
+        player.transform.position = RespawnPoint.GetNearestSpawnPoint(player.gameObject);
 
         // Enable the player's movement & input
         player.Activate();
