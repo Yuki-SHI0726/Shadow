@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class ButtonDelayReset : Interactive
 {
-    [SerializeField] public UnityEvent OnButtonPressed;
-    [SerializeField] public UnityEvent OnButtonRealese;
-    [SerializeField] private LayerMask m_interactionLayer;
-    [SerializeField] private float delayTime;
+    [SerializeField] public UnityEvent OnButtonPressed = null;
+    [SerializeField] public UnityEvent OnButtonRealese = null;
+    [SerializeField] private LayerMask m_interactionLayer = new LayerMask();
+    [SerializeField] private float delayTime = 0.5f;
 
     private BoxCollider2D m_boxCollider;
 

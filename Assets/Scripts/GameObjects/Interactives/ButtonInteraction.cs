@@ -6,11 +6,11 @@ using DG.Tweening;
 
 public class ButtonInteraction : Interactive
 {
-    [SerializeField] public UnityEvent OnButtonPressed;
-    [SerializeField] public UnityEvent OnButtonRealese;
-    [SerializeField] private LayerMask m_interactionLayer;
+    [SerializeField] public UnityEvent OnButtonPressed = null;
+    [SerializeField] public UnityEvent OnButtonRealese = null;
+    [SerializeField] private LayerMask m_interactionLayer = new LayerMask();
 
-    private BoxCollider2D m_boxCollider;
+    private BoxCollider2D m_boxCollider = null;
 
     private void Start()
     {
@@ -31,6 +31,4 @@ public class ButtonInteraction : Interactive
             OnButtonRealese.Invoke();
         }
     }
-
-    
 }
