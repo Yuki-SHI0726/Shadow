@@ -28,8 +28,10 @@ public class GameManager : MonoBehaviour
     /// <returns>Vector3 position of the spawn point we found</returns>
     static public Vector3 GetNearestSpawnPoint(GameObject player)
     {
-        Vector3 respawnPointToTeleport = Vector3.zero;
+        Vector3 respawnPointToTeleport = player.transform.position;
         float closestDistance = float.MaxValue;
+
+        // Go through each RespawnPoint in the scene
         foreach (RespawnPoint respawnPoint in FindObjectsOfType<RespawnPoint>())
         {
             // Get distance from player to respawn point
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
 
             // If the current respawn point is the nearest one, and it's on player's left
             if (distance < closestDistance &&
-                respawnPoint.transform.position.x < player.transform.position.x)
+                respawnPoint.transform.position.x <= player.transform.position.x)
             {
                 // set value for teleporting to this candidate
                 closestDistance = distance;

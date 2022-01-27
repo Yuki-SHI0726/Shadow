@@ -359,8 +359,7 @@ GameObject:
   - component: {fileID: 2423039980472205253}
   - component: {fileID: 2423039980472205259}
   - component: {fileID: 2423039980472205258}
-  - component: {fileID: 9198781523374898400}
-  - component: {fileID: 2423039980472205257}
+  - component: {fileID: 4145730000703956711}
   m_Layer: 0
   m_Name: Hardy
   m_TagString: Player
@@ -521,7 +520,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9198781523374898400
+--- !u!114 &4145730000703956711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -539,24 +538,6 @@ MonoBehaviour:
   m_conversationPromptText: {fileID: 0}
   m_conversationKey: 101
   m_shadowSprite: {fileID: 0}
---- !u!114 &2423039980472205257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2423039980472205252}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f5e2b5e5c46b74ab6e3e002af1f1b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_conversationImage: {fileID: 0}
-  m_speakerImage: {fileID: 0}
-  m_conversationText: {fileID: 0}
-  m_conversationPromptText: {fileID: 0}
-  m_conversationKey: 101
-  m_shadowSprite: {fileID: 21300000, guid: 47426d262d66a4248b453d2d8f969e18, type: 3}
 --- !u!1 &2423039980478970514
 GameObject:
   m_ObjectHideFlags: 0
