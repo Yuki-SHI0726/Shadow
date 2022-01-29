@@ -5,6 +5,12 @@ using UnityEngine;
 /// <summary>
 /// Manager of the game
 /// </summary>
+/// 
+public enum  SceneCamera
+{
+    First,Second,Third
+};
+
 public class GameManager : MonoBehaviour
 {
     // Levels
@@ -17,6 +23,9 @@ public class GameManager : MonoBehaviour
     static public int TotalStarCount = StarCountPerLevel * TotalLevelCount;
     static public int CollectedMemoryFragmentCount = 0;
     static public int TotalMemoryFragmentCount = 4;
+
+    //Scene Camera
+    static public SceneCamera CameraScene = SceneCamera.First;
 
     // NPC
     public const float kCloseDistanceToInteract = 2.0f;

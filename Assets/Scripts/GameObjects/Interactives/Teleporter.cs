@@ -8,7 +8,9 @@ using UnityEngine;
 public class Teleporter : Interactive
 {
     [SerializeField] private Vector3 m_destination = Vector3.zero;
+    [SerializeField] private SceneCamera m_DestinationScene = SceneCamera.First;
     private bool m_canTeleport = false;
+
 
     public override void OnInteract(GameObject interactedObject)
     {
@@ -23,6 +25,7 @@ public class Teleporter : Interactive
         {
             Debug.Assert(m_interactedObject != null);
             m_interactedObject.transform.position = m_destination;
+            GameManager.CameraScene = m_DestinationScene;
             OnExitInteract(m_interactedObject);
         }
     }
