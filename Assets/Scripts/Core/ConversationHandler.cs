@@ -107,6 +107,7 @@ public class ConversationHandler : MonoBehaviour
     /// </summary>
     private void EnableUI(ReadOnlyCollection<string> conversation)
     {
+        m_conversationImage.gameObject.SetActive(true);
         if (m_enableVoiceOver)
         {
             PlayVoiceOver(conversation);
@@ -183,7 +184,6 @@ public class ConversationHandler : MonoBehaviour
         SpeakerData speakerData = GetSpeakerData(conversation[m_messageIndex][0]);
 
         // Image
-        m_circeImage.sprite = speakerData.Sprite;
         switch (speakerData.Name)
         {
             case "Hardy":
