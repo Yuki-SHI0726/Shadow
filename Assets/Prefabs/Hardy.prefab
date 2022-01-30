@@ -221,7 +221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerObject: {fileID: 2423039980472205252}
   m_playeManager: {fileID: 2423039980472205259}
-  m_regionTag: Region
 --- !u!1 &2423039979791432297
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,8 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa598d1736c50eb44aaa48f9548504f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObject: {fileID: 2423039980472205252}
-  PlayerController: {fileID: 2423039980472205253}
 --- !u!61 &2423039979791432303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -458,9 +455,6 @@ MonoBehaviour:
   m_groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  m_interactiveLayer:
-    serializedVersion: 2
-    m_Bits: 64
   MovableTag: MovablePlane
   m_detectorCount: 10
   m_detectionRayLength: 0.05
@@ -497,10 +491,10 @@ MonoBehaviour:
   m_bounds:
     m_Center: {x: 0.22602439, y: -0.37388736, z: -0.2714081}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
-  m_OriginalcharacterBounds:
+  m_originalcharacterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
-  m_OriginalScale: {x: 1, y: 1, z: 1}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_originalScale: {x: 1, y: 1, z: 1}
 --- !u!95 &2423039980472205258
 Animator:
   serializedVersion: 3
@@ -538,6 +532,9 @@ MonoBehaviour:
   m_conversationPromptText: {fileID: 0}
   m_conversationKey: 101
   m_shadowSprite: {fileID: 0}
+  m_hardySprite: {fileID: 0}
+  m_circeSprite: {fileID: 0}
+  m_enableVoiceOver: 1
 --- !u!1 &2423039980478970514
 GameObject:
   m_ObjectHideFlags: 0
